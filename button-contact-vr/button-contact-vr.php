@@ -1,136 +1,230 @@
 <?php
+
 /**
  * Plugin Name: Button contact VR
- * Plugin URI: webvocuc.com
- * Description: Button contact call, zalo, whatsapp, messenger, popup form, popup showroom...
- * Version: 4.7
+ * Plugin URI: https://webvocuc.com
+ * Description: Button contact call, zalo, whatsapp, messenger, popup form,...
+ * Version: 4.7.10
  * Author: VirusTran
  * Author URI: virustran
  * License: GPLv2
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+if (! defined('ABSPATH')) {
+    exit;
 }
 
-define( 'PZF_FILE', __FILE__ );
-define( 'PZF_NAME', basename( PZF_FILE ) );
-define( 'PZF_BASE_NAME', plugin_basename( PZF_FILE ) );
-define( 'PZF_PATH', plugin_dir_path( PZF_FILE ) );
-define( 'PZF_URL', plugin_dir_url( PZF_FILE ) );
+define('PZF_FILE', __FILE__);
+define('PZF_NAME', basename(PZF_FILE));
+define('PZF_BASE_NAME', plugin_basename(PZF_FILE));
+define('PZF_PATH', plugin_dir_path(PZF_FILE));
+define('PZF_URL', plugin_dir_url(PZF_FILE));
 
-function register_mysettings() {
-    register_setting( 'pzf-settings-group', 'pzf_phone' );
-    register_setting( 'pzf-settings-group', 'pzf_phone2' );//4.3
-    register_setting( 'pzf-settings-group', 'pzf_phone3' );//4.3
-    register_setting( 'pzf-settings-group', 'pzf_color_phone' );
-    register_setting( 'pzf-settings-group', 'pzf_color_phone2' ); //4.3
-    register_setting( 'pzf-settings-group', 'pzf_color_phone3' ); //4.3
-    register_setting( 'pzf-settings-group', 'pzf_phone_bar' );
+function register_mysettings()
+{
+    // Group 1: Phone numbers and colors
+    register_setting('pzf-settings-group', 'pzf_phone', [
+        'sanitize_callback' => 'sanitize_text_field_with_limit'
+    ]);
+    register_setting('pzf-settings-group', 'pzf_phone2', [
+        'sanitize_callback' => 'sanitize_text_field_with_limit'
+    ]);
+    register_setting('pzf-settings-group', 'pzf_phone3', [
+        'sanitize_callback' => 'sanitize_text_field_with_limit'
+    ]);
+    register_setting('pzf-settings-group', 'pzf_color_phone', [
+        'sanitize_callback' => 'sanitize_hex_color_with_limit'
+    ]);
+    register_setting('pzf-settings-group', 'pzf_color_phone2', [
+        'sanitize_callback' => 'sanitize_hex_color_with_limit'
+    ]);
+    register_setting('pzf-settings-group', 'pzf_color_phone3', [
+        'sanitize_callback' => 'sanitize_hex_color_with_limit'
+    ]);
 
-    register_setting( 'pzf-settings-group', 'pzf_linkfanpage' ); //4.3
-    register_setting( 'pzf-settings-group', 'pzf_whatsapp' );
-    register_setting( 'pzf-settings-group', 'pzf_zalo' );
-    register_setting( 'pzf-settings-group', 'pzf_telegram' ); //4.4
-    register_setting( 'pzf-settings-group', 'pzf_instagram' ); //4.4
-    register_setting( 'pzf-settings-group', 'pzf_youtube' ); //4.4
-    register_setting( 'pzf-settings-group', 'pzf_tiktok' ); //4.7
-    register_setting( 'pzf-settings-group', 'pzf_viber' );        
-    register_setting( 'pzf-settings-group', 'pzf_contact_link' );
-    register_setting( 'pzf-settings-group', 'pzf_color_contact' );
-    register_setting( 'pzf-settings-group', 'pzf_linkggmap' ); //4.3
-    register_setting( 'pzf-settings-group', 'pzf_color_linkggmap' );//4.3
+    // Group 2: Social media links
+    register_setting('pzf-settings-group', 'pzf_linkfanpage', [
+        'sanitize_callback' => 'esc_url_raw'
+    ]);
+    register_setting('pzf-settings-group', 'pzf_linkmessenger', [
+        'sanitize_callback' => 'esc_url_raw'
+    ]);
+    register_setting('pzf-settings-group', 'pzf_whatsapp', [
+        'sanitize_callback' => 'sanitize_text_field_with_limit'
+    ]);
+    register_setting('pzf-settings-group', 'pzf_zalo', [
+        'sanitize_callback' => 'sanitize_text_field_with_limit'
+    ]);
+    register_setting('pzf-settings-group', 'pzf_telegram', [
+        'sanitize_callback' => 'sanitize_text_field_with_limit'
+    ]);
+    register_setting('pzf-settings-group', 'pzf_instagram', [
+        'sanitize_callback' => 'sanitize_text_field_with_limit'
+    ]);
+    register_setting('pzf-settings-group', 'pzf_youtube', [
+        'sanitize_callback' => 'sanitize_text_field_with_limit'
+    ]);
+    register_setting('pzf-settings-group', 'pzf_tiktok', [
+        'sanitize_callback' => 'sanitize_text_field_with_limit'
+    ]);
+    register_setting('pzf-settings-group', 'pzf_viber', [
+        'sanitize_callback' => 'sanitize_text_field_with_limit'
+    ]);
 
-    register_setting( 'pzf-settings-group', 'pzf_id_fanpage' );
-    register_setting( 'pzf-settings-group', 'pzf_color_fb' );
-    register_setting( 'pzf-settings-group', 'logged_in_greeting' );
-// setting: 2.0
-    register_setting( 'pzf-settings-group-setting', 'setting_size' );
-    register_setting( 'pzf-settings-group-setting', 'pzf_location' );
-    register_setting( 'pzf-settings-group-setting', 'pzf_location_bottom' );
-    register_setting( 'pzf-settings-group-setting', 'pzf_hide_mobile' );
-    register_setting( 'pzf-settings-group-setting', 'pzf_hide_desktop' );
-    register_setting( 'pzf-settings-group-setting', 'pzf_add_css' ); // 4.0
-    register_setting( 'pzf-settings-group-setting', 'pzf_add_js' ); // 4.0
-    register_setting( 'pzf-settings-group-setting', 'pzf_off_effects' ); // 4.3    
+    // Group 3: Contact link and colors
+    register_setting('pzf-settings-group', 'pzf_contact_link', [
+        'sanitize_callback' => 'esc_url_raw'
+    ]);
+    register_setting('pzf-settings-group', 'pzf_color_contact', [
+        'sanitize_callback' => 'sanitize_hex_color_with_limit'
+    ]);
+    register_setting('pzf-settings-group', 'pzf_linkggmap', [
+        'sanitize_callback' => 'esc_url_raw'
+    ]);
+    register_setting('pzf-settings-group', 'pzf_color_linkggmap', [
+        'sanitize_callback' => 'sanitize_hex_color_with_limit'
+    ]);
 
-// All in one: 3.0
-    register_setting( 'pzf_settings_all_in_one', 'pzf_enable_all_in_one' );
-    register_setting( 'pzf_settings_all_in_one', 'pzf_note_all_in_one' );
-    register_setting( 'pzf_settings_all_in_one', 'pzf_note_bar_all_in_one' );
-    register_setting( 'pzf_settings_all_in_one', 'pzf_color_all_in_one' );
-    register_setting( 'pzf_settings_all_in_one', 'pzf_icon_all_in_one' );
-    register_setting( 'pzf_settings_all_in_one', 'pzf_hide_default_all_in_one' );
-// contact form: 4.0
-    register_setting( 'pzf_settings_contact_form', 'pzf_enable_contact_form' );
-    register_setting( 'pzf_settings_contact_form', 'pzf_color_contact_form' );
-    register_setting( 'pzf_settings_contact_form', 'pzf_icon_contact_form' );    
-    register_setting( 'pzf_settings_contact_form', 'pzf_title_contact_form' );
-    register_setting( 'pzf_settings_contact_form', 'pzf_content_contact_form' );
-    register_setting( 'pzf_settings_contact_form', 'pzf_img_contact_form' );
-    register_setting( 'pzf_settings_contact_form', 'pzf_loco_img_contact_form' );
-    register_setting( 'pzf_settings_contact_form', 'pzf_bg_contact_form' );
-    register_setting( 'pzf_settings_contact_form', 'pzf_max_w_contact_form' ); 
-	
-// showroom: 4.0
-    register_setting( 'pzf_settings_showroom', 'pzf_enable_showroom' );
-    register_setting( 'pzf_settings_showroom', 'pzf_color_showroom' );
-    register_setting( 'pzf_settings_showroom', 'pzf_icon_showroom' );
-    register_setting( 'pzf_settings_showroom', 'pzf_link_showroom' );
-    register_setting( 'pzf_settings_showroom', 'pzf_link_newtab_showroom' );
-    register_setting( 'pzf_settings_showroom', 'pzf_enable_popup_showroom' );
-    register_setting( 'pzf_settings_showroom', 'pzf_content_showroom' );
-    register_setting( 'pzf_settings_showroom', 'pzf_bg_showroom' );
-    register_setting( 'pzf_settings_showroom', 'pzf_max_w_showroom' );
+    // Group 4: Facebook integration
+    register_setting('pzf-settings-group', 'pzf_id_fanpage', [
+        'sanitize_callback' => 'sanitize_text_field_with_limit'
+    ]);
+    register_setting('pzf-settings-group', 'pzf_color_fb', [
+        'sanitize_callback' => 'sanitize_hex_color_with_limit'
+    ]);
+
+    // Group 5: Other settings
+    register_setting('pzf-settings-group', 'pzf_phone_bar', [
+        'sanitize_callback' => 'sanitize_text_field_with_limit'
+    ]);
+    register_setting('pzf-settings-group', 'logged_in_greeting', [
+        'sanitize_callback' => 'sanitize_text_field_with_limit'
+    ]);
+
+
+    register_setting('pzf-settings-group-setting', 'setting_size', [
+        'sanitize_callback' => 'sanitize_text_field_with_limit'
+    ]);
+    register_setting('pzf-settings-group-setting', 'pzf_location', [
+        'sanitize_callback' => 'sanitize_text_field_with_limit'
+    ]);
+    register_setting('pzf-settings-group-setting', 'pzf_location_bottom', [
+        'sanitize_callback' => 'sanitize_text_field_with_limit'
+    ]);
+    register_setting('pzf-settings-group-setting', 'pzf_hide_mobile', [
+        'sanitize_callback' => 'sanitize_text_field_with_limit'
+    ]);
+    register_setting('pzf-settings-group-setting', 'pzf_hide_desktop', [
+        'sanitize_callback' => 'sanitize_text_field_with_limit'
+    ]);
+    register_setting('pzf-settings-group-setting', 'pzf_off_effects', [
+        'sanitize_callback' => 'sanitize_text_field_with_limit'
+    ]);
+
+
+    register_setting('pzf_settings_all_in_one', 'pzf_enable_all_in_one', [
+        'sanitize_callback' => 'sanitize_text_field_with_limit'
+    ]);
+    register_setting('pzf_settings_all_in_one', 'pzf_note_all_in_one', [
+        'sanitize_callback' => 'sanitize_text_field_with_limit'
+    ]);
+    register_setting('pzf_settings_all_in_one', 'pzf_note_bar_all_in_one', [
+        'sanitize_callback' => 'sanitize_text_field_with_limit'
+    ]);
+    register_setting('pzf_settings_all_in_one', 'pzf_color_all_in_one', [
+        'sanitize_callback' => 'sanitize_hex_color_with_limit'
+    ]);
+    register_setting('pzf_settings_all_in_one', 'pzf_icon_all_in_one', [
+        'sanitize_callback' => 'sanitize_text_field_with_limit'
+    ]);
+    register_setting('pzf_settings_all_in_one', 'pzf_hide_default_all_in_one', [
+        'sanitize_callback' => 'sanitize_text_field_with_limit'
+    ]);
+
+
+    register_setting('pzf_settings_contact_form', 'pzf_enable_contact_form', [
+        'sanitize_callback' => 'sanitize_text_field_with_limit'
+    ]);
+    register_setting('pzf_settings_contact_form', 'pzf_color_contact_form', [
+        'sanitize_callback' => 'sanitize_hex_color_with_limit'
+    ]);
+    register_setting('pzf_settings_contact_form', 'pzf_bg_contact_form', [
+        'sanitize_callback' => 'sanitize_hex_color_with_limit'
+    ]);
+    register_setting('pzf_settings_contact_form', 'pzf_max_w_contact_form', [
+        'sanitize_callback' => 'sanitize_text_field_with_limit'
+    ]);
 }
+
+// Sanitize and limit the length of a text field
+function sanitize_text_field_with_limit($value)
+{
+    $value = wp_strip_all_tags($value); // Remove HTML tags
+    return substr($value, 0, 255); // Limit to 255 characters
+}
+
+// Sanitize and limit the length of a hex color field
+function sanitize_hex_color_with_limit($value)
+{
+    $value = sanitize_hex_color($value); // Sanitize hex color
+    return substr($value, 0, 7); // Limit to 7 characters
+}
+
 
 require_once PZF_PATH . '/inc/button-contact.php';
 
 // add menu admin wp
-function pzf_create_menu() {
-    add_menu_page('Button contact VR', 'Button contact', 'administrator', 'contact_vr', 'pzf_settings_page',plugins_url('/img/icon.png', __FILE__), 100);
-    add_action( 'admin_init', 'register_mysettings' );
+function pzf_create_menu()
+{
+    add_menu_page('Button contact VR', 'Button contact', 'administrator', 'contact_vr', 'pzf_settings_page', plugins_url('/img/icon.png', __FILE__), 100);
+    add_action('admin_init', 'register_mysettings');
 
     // add_menu_page( string $page_title, string $menu_title, string $capability, string $menu_slug, callable $function = '', string $icon_url = '', int $position = null )
-    add_submenu_page( 'contact_vr', 'Contact form', 'Contact form', 'administrator', 'contact_vr_contact_form', 'pzf_settings_contact_form', 10 );
-    add_submenu_page( 'contact_vr', 'Showroom', 'Showroom', 'administrator', 'contact_vr_showroom', 'pzf_settings_showroom', 20 );
-    add_submenu_page( 'contact_vr', 'All in one', 'All in one', 'administrator', 'contact_vr_all_in_one', 'pzf_settings_all_in_one', 30 );
-    add_submenu_page( 'contact_vr', 'Setting', 'Setting', 'administrator', 'contact_vr_setting', 'pzf_settings_page_setting', 40 );
-
+    add_submenu_page('contact_vr', 'Contact form', 'Contact form', 'administrator', 'contact_vr_contact_form', 'pzf_settings_contact_form', 10);
+    add_submenu_page('contact_vr', 'Showroom', 'Showroom', 'administrator', 'contact_vr_showroom', 'pzf_settings_showroom', 20);
+    add_submenu_page('contact_vr', 'All in one', 'All in one', 'administrator', 'contact_vr_all_in_one', 'pzf_settings_all_in_one', 30);
+    add_submenu_page('contact_vr', 'Setting', 'Setting', 'administrator', 'contact_vr_setting', 'pzf_settings_page_setting', 40);
 }
-add_action('admin_menu', 'pzf_create_menu'); 
+add_action('admin_menu', 'pzf_create_menu');
 
 // add link setting -  add setting: 4.2
-add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'add_action_links' );
-function add_action_links ( $actions ) {
-   $mylinks = array(
-      '<a href="' . admin_url( 'admin.php?page=contact_vr' ) . '">'.esc_html__( 'Settings', 'settings_pzf' ).'</a>',
-   );
-   $actions = array_merge( $actions, $mylinks );
-   return $actions;
+add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'add_action_links');
+function add_action_links($actions)
+{
+    $mylinks = array(
+        '<a href="' . admin_url('admin.php?page=contact_vr') . '">' . esc_html__('Settings', 'button-contact-vr') . '</a>',
+    );
+    $actions = array_merge($actions, $mylinks);
+    return $actions;
 }
 // Register and enqueue custom admin CSS
-function custom_admin_css() {
-  wp_register_style( 'custom-admin', plugins_url( 'css/style-admin.css', __FILE__ ) );
-  wp_enqueue_style( 'custom-admin' );
+function custom_admin_css()
+{
+    wp_register_style('custom-admin', plugins_url('css/style-admin.css', __FILE__), [], 1);
+    wp_enqueue_style('custom-admin');
 }
-add_action( 'admin_enqueue_scripts', 'custom_admin_css' );
+add_action('admin_enqueue_scripts', 'custom_admin_css');
 
 // add backend
-function pzf_settings_page() {
-    include PZF_PATH. '/inc/admin.php';
+function pzf_settings_page()
+{
+    include PZF_PATH . '/inc/admin.php';
 }
-function pzf_settings_page_setting() {
-    include PZF_PATH. '/inc/setting.php';
+function pzf_settings_page_setting()
+{
+    include PZF_PATH . '/inc/setting.php';
 }
-function pzf_settings_all_in_one() {
-    include PZF_PATH. '/inc/all-in-one.php';
+function pzf_settings_all_in_one()
+{
+    include PZF_PATH . '/inc/all-in-one.php';
 }
-function pzf_settings_contact_form() {
-    include PZF_PATH. '/inc/contact-form.php';
+function pzf_settings_contact_form()
+{
+    include PZF_PATH . '/inc/contact-form.php';
 }
-function pzf_settings_showroom() {
-    include PZF_PATH. '/inc/showroom.php';
+function pzf_settings_showroom()
+{
+    include PZF_PATH . '/inc/showroom.php';
 }
 // end backend
 PZF::instance();

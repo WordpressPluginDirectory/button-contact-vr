@@ -1,13 +1,14 @@
 === Button contact VR ===
-Contributors: VirusTran
-Tags: Button contact call, zalo, whatsapp, messenger, popup, showroom
+Contributors: hautrancong16
+Tags: Button contact call, zalo, whatsapp, messenger
 Donate link: paypal.me/virustran
-Requires at least: 5.0
-Tested up to: 6.4
+Requires at least: 4.7
+Tested up to: 6.5.2
 Requires PHP: 5.6
-License: 4.7.1
-Developer: https://github.com/virustran/button-contact-vr/tree/develops
-License URI: http://www.gnu.org/licenses/gpl.html
+Tested up to: 6.6
+Stable Tag: 4.7.10
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Button contact VR
 
@@ -38,7 +39,6 @@ Popup form (title, content, form, image and location)
 
 == Help ==
 https://webvocuc.com/blog/tag/button-contact-vr
-https://github.com/virustran/button-contact-vr/tree/develops
 
 == Screenshots ==
 1. Visit Plugins > Search for Button contact VR
@@ -103,3 +103,33 @@ Tested up to wordpress: 6.2
 
 =4.7.1
 *Tested up to: 6.4
+
+= 4.7.2
+*fix type hotline
+
+= 4.7.3
+* Release Date - 12/07/2024.
+* add link messenger
+
+= 4.7.4
+* It is currently under maintenance! showroom and contact
+
+= 4.7.5
+* hide css - js custome
+
+= 4.7.6
+* add pattern to input
+
+= 4.7.7
+* Sanitize and limit the length
+
+= 4.7.8
+* fix esc_html
+
+= 4.7.9
+* fix num phone
+
+= 4.7.10
+* Bug fixes
+* Better sanitizing
+* Updated translations

@@ -3,3 +3,6 @@
 #tiktok-vr .phone-vr-circle-fill {box-shadow: 0 0 0 0 rgb(2 2 2 / 55%);background-color: rgb(2 2 2 / 60%);}
 #tiktok-vr  .phone-vr-img-circle img {max-width: 90%;max-height: 90%;}
 #tiktok-vr .phone-vr-img-circle {background: #020202;}
+#messenger-vr .phone-vr-circle-fill {box-shadow: 0 0 0 0 #6a4ffe;background-color: rgb(106 79 254 / 50%);}
+#messenger-vr .phone-vr-img-circle {background-color: #6a4ffe;}
+#messenger-vr .phone-vr-img-circle img {max-width: 100%;max-height: 100%;}
