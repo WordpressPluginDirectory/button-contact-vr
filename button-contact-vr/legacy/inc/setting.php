@@ -63,6 +63,14 @@
 
     <hr />
 
+    <div style="max-width: 1200px;">
+        <h2>Try our new version</h2>
+        <p style="line-height: 1em;">Ready to try something new? Buttonizer has officially taken over maintenance of this plugin and supports over <b>40+ button actions</b>, including WhatsApp, Zalo, FB Messenger, and many more.</p>
+        <p style="line-height: 1em;">All of this power is already included in this plugin. Simply click "Try now" below, and you can always switch back to this legacy version if you prefer. <a href="https://r.buttonizer.io/support/knowledgebase/2617?utm_source=knowledgebase-link&utm_medium=wp-contact-button-plugin" target="_blank">Learn more here</a></p>
+        <a href="?page=contact_vr_setting&try_new_version=yes" class="button">Try now</a>
+    </div>
+    <hr style="margin-top: 15px" />
+
     <h2><?php esc_html_e('Support', 'button-contact-vr'); ?></h2>
     <p>
         <?php
@@ -76,19 +84,4 @@
         );
         ?>
     </p>
-    <h2><?php esc_html_e('Help', 'button-contact-vr'); ?></h2>
-    <p>
-
-        <?php
-        echo wp_kses(
-            sprintf(
-                // translators: %s will be replaced with the actual link
-                __('Please visit <a %s>this link</a>.', 'button-contact-vr'),
-                'href="https://webvocuc.com/blog/tag/button-contact-vr" target="_blank"'
-            ),
-            ["a" => ["href" => [], "target" => []]]
-        );
-        ?>
-    </p>
-
 </div>

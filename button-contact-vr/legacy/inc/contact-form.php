@@ -1,11 +1,11 @@
-<!--  * Version: 4.1 -->
+<!--  * Version: 3.0 -->
 <div class="wrap">
-    <h2>Contact Form Popup (Beta)</h2>
+    <h2>Contact Form</h2>
     <h2 class="nav-tab-wrapper">
         <a href="admin.php?page=contact_vr" class="nav-tab">Button contact</a>
-        <a href="admin.php?page=contact_vr_showroom" class="nav-tab  nav-tab-active">Showroom</a>
-        <a href="admin.php?page=contact_vr_contact_form" class="nav-tab">Contact form (beta)</a>
-        <a href="admin.php?page=contact_vr_all_in_one" class="nav-tab">All in one</a>
+        <a href="admin.php?page=contact_vr_showroom" class="nav-tab">Showroom</a>
+        <a href="admin.php?page=contact_vr_contact_form" class="nav-tab  nav-tab-active">Contact form (beta)</a>
+        <a href="admin.php?page=contact_vr_all_in_one" class="nav-tab">All in one </a>
         <a href="admin.php?page=contact_vr_setting" class="nav-tab">Setting</a>
     </h2>
 
@@ -24,20 +24,6 @@
                 // translators: %s will be replaced with the actual link
                 __('For submitting any support queries, feedback, bug reports or feature requests, please visit <a %s>this link</a>.', 'button-contact-vr'),
                 'href="https://wordpress.org/plugins/button-contact-vr/" target="_blank"'
-            ),
-            ["a" => ["href" => [], "target" => []]]
-        );
-        ?>
-    </p>
-    <h2><?php esc_html_e('Help', 'button-contact-vr'); ?></h2>
-    <p>
-
-        <?php
-        echo wp_kses(
-            sprintf(
-                // translators: %s will be replaced with the actual link
-                __('Please visit <a %s>this link</a>.', 'button-contact-vr'),
-                'href="https://webvocuc.com/blog/tag/button-contact-vr" target="_blank"'
             ),
             ["a" => ["href" => [], "target" => []]]
         );

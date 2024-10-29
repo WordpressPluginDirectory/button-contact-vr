@@ -126,19 +126,4 @@
         );
         ?>
     </p>
-    <h2><?php esc_html_e('Help', 'button-contact-vr'); ?></h2>
-    <p>
-
-        <?php
-        echo wp_kses(
-            sprintf(
-                // translators: %s will be replaced with the actual link
-                __('Please visit <a %s>this link</a>.', 'button-contact-vr'),
-                'href="https://webvocuc.com/blog/tag/button-contact-vr" target="_blank"'
-            ),
-            ["a" => ["href" => [], "target" => []]]
-        );
-        ?>
-    </p>
-
 </div>
