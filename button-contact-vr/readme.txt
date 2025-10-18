@@ -4,7 +4,7 @@ Buy plugin: https://buttonizer.io
 Tags: contact button, whatsapp, live chat, chat, chatbot
 Requires at least: 4.7
 Tested up to: 6.8
-Stable tag: 5.0.2
+Stable tag: 5.0.4
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -426,3 +426,9 @@ Tested up to wordpress: 6.2
 
 = 5.0.2 - July 11, 2025 =
 * Fix: bug fix
+
+= 5.0.3 - September 25, 2025 =
+* Bug fix
+
+= 5.0.4 - October 16, 2025 =
+* Bug fix

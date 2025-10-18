@@ -1,16 +1,16 @@
 {
   "index.html": {
-    "file": "index.e4ead79a.js",
+    "file": "index.8e254b74.js",
     "src": "index.html",
     "isEntry": true,
     "imports": [
-      "_vendor.84c11de7.js"
+      "_vendor.f74cc2e8.js"
     ],
     "css": [
       "index.aaca6382.css"
     ]
   },
-  "_vendor.84c11de7.js": {
-    "file": "vendor.84c11de7.js"
+  "_vendor.f74cc2e8.js": {
+    "file": "vendor.f74cc2e8.js"
   }
 }

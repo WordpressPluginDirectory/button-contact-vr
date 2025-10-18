@@ -4,7 +4,7 @@
  * Plugin Name: Call / Chat / Contact Button
  * Plugin URI: https://buttonizer.io
  * Description: Powerful platform to create chat buttons for WhatsApp, Messenger, Live Chat, Zalo, and 40+ other actions.
- * Version: 5.0.2
+ * Version: 5.0.4
  * Author: Buttonizer
  * Author URI: https://buttonizer.io
  * License: GPLv2
@@ -40,7 +40,7 @@ if ($legacyUser || defined("BZ_CONTACT_BUTTON_USE_LEGACY")) {
     require_once __DIR__ . "/legacy/plugin.php";
 } else {
     // Define current version
-    define('BZ_CONTACT_BUTTON_VERSION', '5.0.2');
+    define('BZ_CONTACT_BUTTON_VERSION', '5.0.4');
     define('BZ_CONTACT_BUTTON_PLUGIN_FILE', __FILE__);
 
     // Autoloader
