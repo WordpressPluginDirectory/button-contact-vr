@@ -26,7 +26,12 @@ class Settings
     private static function initialize()
     {
         // Register options
-        register_setting(BZ_CONTACT_BUTTON_NAME, BZ_CONTACT_BUTTON_NAME . "_settings");
+        register_setting(BZ_CONTACT_BUTTON_NAME, BZ_CONTACT_BUTTON_NAME . "_settings", [
+            'type' => 'array',
+            'sanitize_callback' => function ($value) {
+                return is_array($value) ? $value : [];
+            }
+        ]);
 
         // Load settings
         self::$settings = get_option(BZ_CONTACT_BUTTON_NAME . "_settings", []);

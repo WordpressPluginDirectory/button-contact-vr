@@ -41,5 +41,5 @@
 <noscript>You need to enable JavaScript to run Buttonizer.</noscript>
 
 <div id="root">
-    <div class="buzzy-animation"><img src="<?= esc_url(plugins_url("/assets/images/icon-animated.svg", BZ_CONTACT_BUTTON_PLUGIN_FILE)) ?>" /> <span>Loading...</span></div>
+    <div class="buzzy-animation"><img src="<?php echo esc_url(plugins_url("/assets/images/icon-animated.svg", BZ_CONTACT_BUTTON_PLUGIN_FILE)) ?>" /> <span>Loading...</span></div>
 </div>

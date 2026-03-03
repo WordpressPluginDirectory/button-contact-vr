@@ -74,7 +74,7 @@ class Admin
         if (!PermissionCheck::hasPermission()) return;
 
         // Admin menu
-        add_menu_page('Contact Button', 'Contact Button', 'read', 'bz_button_contact', [$this, 'page'], plugins_url('/assets/images/wp-icon.png', BZ_CONTACT_BUTTON_PLUGIN_DIR), 81);
+        add_menu_page('Chat Button', 'Chat Button', 'read', 'bz_button_contact', [$this, 'page'], plugins_url('/assets/images/wp-icon.png', BZ_CONTACT_BUTTON_PLUGIN_DIR), 81);
 
         // Add submenu
         add_submenu_page('bz_button_contact', 'Edit buttons',  __('Edit buttons', 'button-contact-vr'), 'read', 'admin.php?page=bz_button_contact#/editor');
@@ -422,7 +422,7 @@ class Admin
         <div id="buttonizer-admin-notice" class="notice notice-info">
             <p>Hey there! You\'re currently using <b>Buttonizer</b> for a while now and we really hope you like it! Would you like to review us on WordPress and share your experience? This way you support us developing new features for Buttonizer and spread the love!</p>
 
-            <p><a href="https://wordpress.org/support/plugin/button-contact-vr/reviews/?filter=5&utm_source=wp-plugin-request-review-btn" target="_blank" onClick="buttonizerAdminNotice()" class="button button-primary"><span class="dashicons dashicons-star-filled" style="vertical-align: middle; font-size: 16px;"></span> Review buttonizer</a>&nbsp;&nbsp;<a href="javascript:void(0)" onClick="buttonizerAdminNotice()" class="button">Dismiss message</a>&nbsp;&nbsp;or&nbsp;&nbsp;<a href="https://r.buttonizer.io/feedback?utm_source=wp-plugin-request-review-btn" target="_blank">send us feedback</a></p>
+            <p><a href="https://wordpress.org/support/plugin/button-contact-vr/reviews/?utm_source=wp-plugin-request-review-btn" target="_blank" onClick="buttonizerAdminNotice()" class="button button-primary"><span class="dashicons dashicons-star-filled" style="vertical-align: middle; font-size: 16px;"></span> Review buttonizer</a>&nbsp;&nbsp;<a href="javascript:void(0)" onClick="buttonizerAdminNotice()" class="button">Dismiss message</a>&nbsp;&nbsp;or&nbsp;&nbsp;<a href="https://r.buttonizer.io/feedback?utm_source=wp-plugin-request-review-btn" target="_blank">send us feedback</a></p>
         </div>
 
         <script>

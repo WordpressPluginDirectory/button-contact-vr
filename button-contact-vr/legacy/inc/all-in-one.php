@@ -58,7 +58,7 @@
                             <li>
                                 <label for="pzf_icon_all_in_one<?php echo esc_attr($icon); ?>">
                                     <span style="background: <?php echo esc_attr($color); ?>">
-                                        <img src="<?= esc_url(plugin_dir_url(BZ_CONTACT_BUTTON_MAIN_FILE)) ?>/legacy/img/icon<?= esc_attr($icon) ?>.png">
+                                        <img src="<?php echo esc_url(plugin_dir_url(BZ_CONTACT_BUTTON_MAIN_FILE)) ?>/legacy/img/icon<?php echo esc_attr($icon) ?>.png">
                                     </span>
                                     <input id="pzf_icon_all_in_one<?php echo esc_attr($icon); ?>" name="pzf_icon_all_in_one" type="radio" value="<?php echo esc_attr($icon); ?>"
                                         <?php checked(get_option('pzf_icon_all_in_one'), $icon); ?> />

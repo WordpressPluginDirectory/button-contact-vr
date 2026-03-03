@@ -25,7 +25,12 @@ class Account
     private static function initialize()
     {
         // Register options
-        register_setting(BZ_CONTACT_BUTTON_NAME, BZ_CONTACT_BUTTON_NAME . "_account");
+        register_setting(BZ_CONTACT_BUTTON_NAME, BZ_CONTACT_BUTTON_NAME . "_account", [
+            'type' => 'array',
+            'sanitize_callback' => function ($value) {
+                return is_array($value) ? $value : [];
+            }
+        ]);
 
         // Load settings
         self::$data = get_option(BZ_CONTACT_BUTTON_NAME . "_account", []);

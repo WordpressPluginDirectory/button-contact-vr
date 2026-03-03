@@ -180,13 +180,46 @@ class MigrateToStandalone
     private function getData()
     {
         // Register settings
-        register_setting('buttonizer', 'buttonizer_buttons');
-        register_setting('buttonizer', 'buttonizer_buttons_published');
-        register_setting('buttonizer', 'buttonizer_rules');
-        register_setting('buttonizer', 'buttonizer_rules_published');
-        register_setting('buttonizer', 'buttonizer_schedules');
-        register_setting('buttonizer', 'buttonizer_schedules_published');
-        register_setting('buttonizer', 'buttonizer_has_changes');
+        register_setting('buttonizer', 'buttonizer_buttons', [
+            'type' => 'array',
+            'sanitize_callback' => function ($value) {
+                return is_array($value) ? $value : [];
+            }
+        ]);
+        register_setting('buttonizer', 'buttonizer_buttons_published', [
+            'type' => 'array',
+            'sanitize_callback' => function ($value) {
+                return is_array($value) ? $value : [];
+            }
+        ]);
+        register_setting('buttonizer', 'buttonizer_rules', [
+            'type' => 'array',
+            'sanitize_callback' => function ($value) {
+                return is_array($value) ? $value : [];
+            }
+        ]);
+        register_setting('buttonizer', 'buttonizer_rules_published', [
+            'type' => 'array',
+            'sanitize_callback' => function ($value) {
+                return is_array($value) ? $value : [];
+            }
+        ]);
+        register_setting('buttonizer', 'buttonizer_schedules', [
+            'type' => 'array',
+            'sanitize_callback' => function ($value) {
+                return is_array($value) ? $value : [];
+            }
+        ]);
+        register_setting('buttonizer', 'buttonizer_schedules_published', [
+            'type' => 'array',
+            'sanitize_callback' => function ($value) {
+                return is_array($value) ? $value : [];
+            }
+        ]);
+        register_setting('buttonizer', 'buttonizer_has_changes', [
+            'type' => 'boolean',
+            'sanitize_callback' => 'rest_sanitize_boolean'
+        ]);
 
         // Check if the user has changes
         // If that's not the case we'll skip these to
@@ -217,14 +250,52 @@ class MigrateToStandalone
     private static function makeBackup(): void
     {
         // Register special backup settings
-        register_setting('buttonizer', 'buttonizer_buttons_backup_30');
-        register_setting('buttonizer', 'buttonizer_buttons_published_backup_30');
-        register_setting('buttonizer', 'buttonizer_has_changes_backup_30');
-        register_setting('buttonizer', 'buttonizer_rules_backup_30');
-        register_setting('buttonizer', 'buttonizer_rules_published_backup_30');
-        register_setting('buttonizer', 'buttonizer_schedules_backup_30');
-        register_setting('buttonizer', 'buttonizer_schedules_published_backup_30');
-        register_setting('buttonizer', 'buttonizer_settings_backup_30');
+        register_setting('buttonizer', 'buttonizer_buttons_backup_30', [
+            'type' => 'array',
+            'sanitize_callback' => function ($value) {
+                return is_array($value) ? $value : [];
+            }
+        ]);
+        register_setting('buttonizer', 'buttonizer_buttons_published_backup_30', [
+            'type' => 'array',
+            'sanitize_callback' => function ($value) {
+                return is_array($value) ? $value : [];
+            }
+        ]);
+        register_setting('buttonizer', 'buttonizer_has_changes_backup_30', [
+            'type' => 'boolean',
+            'sanitize_callback' => 'rest_sanitize_boolean'
+        ]);
+        register_setting('buttonizer', 'buttonizer_rules_backup_30', [
+            'type' => 'array',
+            'sanitize_callback' => function ($value) {
+                return is_array($value) ? $value : [];
+            }
+        ]);
+        register_setting('buttonizer', 'buttonizer_rules_published_backup_30', [
+            'type' => 'array',
+            'sanitize_callback' => function ($value) {
+                return is_array($value) ? $value : [];
+            }
+        ]);
+        register_setting('buttonizer', 'buttonizer_schedules_backup_30', [
+            'type' => 'array',
+            'sanitize_callback' => function ($value) {
+                return is_array($value) ? $value : [];
+            }
+        ]);
+        register_setting('buttonizer', 'buttonizer_schedules_published_backup_30', [
+            'type' => 'array',
+            'sanitize_callback' => function ($value) {
+                return is_array($value) ? $value : [];
+            }
+        ]);
+        register_setting('buttonizer', 'buttonizer_settings_backup_30', [
+            'type' => 'array',
+            'sanitize_callback' => function ($value) {
+                return is_array($value) ? $value : [];
+            }
+        ]);
 
         // Save restorable data
         update_option('buttonizer_buttons_backup_30', get_option('buttonizer_buttons'));
@@ -251,7 +322,12 @@ class MigrateToStandalone
      */
     public static function getReadyForMigration()
     {
-        register_setting('buttonizer', 'buttonizer_buttons');
+        register_setting('buttonizer', 'buttonizer_buttons', [
+            'type' => 'array',
+            'sanitize_callback' => function ($value) {
+                return is_array($value) ? $value : [];
+            }
+        ]);
         $groups = get_option("buttonizer_buttons", []);
 
         // Don't do anything
